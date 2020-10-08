@@ -23,7 +23,6 @@ public class MatrixIt implements Iterator<Integer> {
         }
         return hasNext;
     }
-
     @Override
     public Integer next() {
         if (!hasNext()) {
