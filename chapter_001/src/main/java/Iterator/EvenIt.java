@@ -1,7 +1,9 @@
 package Iterator;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.Predicate;
 
 public class EvenIt implements Iterator<Integer> {
     private final int[] numbers;
@@ -10,28 +12,25 @@ public class EvenIt implements Iterator<Integer> {
     public EvenIt(final int[] numbers) {
         this.numbers = numbers;
     }
-
     @Override
     public boolean hasNext() {
-        int evenIndex = 0;
-        boolean isEven = false;
-        for (int i = point; i < numbers.length; i++) {
-                if(numbers[i] %2 == 0){
-                    isEven = true;
-                    evenIndex = i;
-                }
-                point = evenIndex;
+        boolean even = false;
+        for (int i = this.point; i < numbers.length; i++) {
+            if (numbers[i] % 2 == 0) {
+                even = true;
+            }
         }
-        return isEven;
+        return even;
     }
-
     @Override
     public Integer next() {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-
-        return null;
+            while(numbers[point] %2 !=0){
+                point++;
+            }
+        return numbers[point++];
     }
 }
 
