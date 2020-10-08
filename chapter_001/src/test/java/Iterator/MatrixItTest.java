@@ -64,6 +64,12 @@ public class MatrixItTest {
         MatrixIt it = new MatrixIt(in);
         assertThat(it.hasNext(), is(false));
     }
+    @Test
+    public void whenNoElements() {
+        int[][] in = {{}, {}, {}};
+        MatrixIt it = new MatrixIt(in);
+        assertThat(it.hasNext(), is(false));
+    }
 
     @Test(expected = NoSuchElementException.class)
     public void whenEmptyThenNext() {

@@ -31,7 +31,7 @@ public class EvenIt implements Iterator<Integer> {
             throw new NoSuchElementException();
         }
 
-        return numbers[];
+        return null;
     }
 }
 
