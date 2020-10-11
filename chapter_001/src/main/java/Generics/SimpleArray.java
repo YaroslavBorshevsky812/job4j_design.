@@ -1,29 +1,57 @@
 package Generics;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import com.sun.tools.javac.Main;
+
+import java.util.*;
 
 public class SimpleArray<T> implements Iterable<T>{
-        private int modCount;
-        private int size;
+        private Object[] array;
+        private int size = 0;
 
-    public boolean add(T model) {
-        return true;
+    public SimpleArray(int size) {
+        this.array = new Object[size];
     }
-    public boolean set(int index, T model){
-        return true;
+    public void add(T model) {
+        Objects.checkIndex(size, this.array.length);
+        array[size++] = model;
     }
-    public boolean remove(int index){
-        return true;
+    public void set(int index, T model){
+        Objects.checkIndex(index, this.array.length);
+        this.array[index] = model;
+    }
+    public void remove(int index){
+        Objects.checkIndex(index, this.array.length);
+        array[index] = null;
+        System.arraycopy(array, index + 1, array, index, size - index);
+        array[size - 1] = null;
+        size--;
     }
     public T get(int index){
-        return null;
+        Objects.checkIndex(index, this.array.length);
+        return (T) array[index];
     }
-
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new Iterator() {
+            @Override
+            public boolean hasNext() {
+                return size != 0;
+            }
+            @Override
+            public Object next() {
+                if(!hasNext()){
+                    throw new NoSuchElementException();
+                }
+                return array[0];
+            }
+        };
+    }
+
+    public static void main(String[] args) {
+        SimpleArray<Object> data = new SimpleArray(2);
+        Iterator<Object> it = data.iterator();
+        data.add("Anna");
+        System.out.println(it.next());
     }
 }
+
