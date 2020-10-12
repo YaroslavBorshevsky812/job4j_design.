@@ -49,4 +49,20 @@ public class SimpleArrayTest {
         array.add("second");
         it.next();
     }
+    @Test
+    public void whenThreeElement(){
+        SimpleArray<Object> array = new SimpleArray<Object>(3);
+        Iterator<Object> it = array.iterator();
+        array.add("first");
+        array.add("second");
+        array.add("third");
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.next(), is("first"));
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.next(), is("second"));
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.next(), is("third"));
+        assertThat(it.hasNext(), is(false));
+
+    }
 }

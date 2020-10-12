@@ -7,6 +7,7 @@ import java.util.*;
 public class SimpleArray<T> implements Iterable<T>{
         private Object[] array;
         private int size = 0;
+        private int point = 0;
 
     public SimpleArray(int size) {
         this.array = new Object[size];
@@ -16,18 +17,18 @@ public class SimpleArray<T> implements Iterable<T>{
         array[size++] = model;
     }
     public void set(int index, T model){
-        Objects.checkIndex(index, this.array.length);
+        Objects.checkIndex(index, size);
         this.array[index] = model;
     }
     public void remove(int index){
-        Objects.checkIndex(index, this.array.length);
+        Objects.checkIndex(index, size);
         array[index] = null;
         System.arraycopy(array, index + 1, array, index, size - index);
         array[size - 1] = null;
         size--;
     }
     public T get(int index){
-        Objects.checkIndex(index, this.array.length);
+        Objects.checkIndex(index, size);
         return (T) array[index];
     }
     @Override
@@ -35,23 +36,16 @@ public class SimpleArray<T> implements Iterable<T>{
         return new Iterator() {
             @Override
             public boolean hasNext() {
-                return size != 0;
+                return point < size;
             }
             @Override
             public Object next() {
                 if(!hasNext()){
                     throw new NoSuchElementException();
                 }
-                return array[0];
+                return array[point++];
             }
         };
-    }
-
-    public static void main(String[] args) {
-        SimpleArray<Object> data = new SimpleArray(2);
-        Iterator<Object> it = data.iterator();
-        data.add("Anna");
-        System.out.println(it.next());
     }
 }
 
