@@ -1,5 +1,7 @@
 package Сollection;
 
+import static org.junit.Assert.*;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -39,10 +41,18 @@ public class SimpleSecondArrayTest {
         array.add("first");
         array.get(1);
     }
-
     @Test(expected = NoSuchElementException.class)
     public void whenGetEmptyFromIt() {
         SimpleSecondArray<String> array = new SimpleSecondArray<>();
         array.iterator().next();
+    }
+
+    @Test(expected = ConcurrentModificationException.class)
+    public void whenCorruptedIt() {
+        SimpleSecondArray<String> array = new SimpleSecondArray<>();
+        array.add("first");
+        Iterator<String> it = array.iterator();
+        array.add("second");
+        it.next();
     }
 }

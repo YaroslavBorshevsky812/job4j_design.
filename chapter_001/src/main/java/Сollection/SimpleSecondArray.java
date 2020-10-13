@@ -1,63 +1,66 @@
 package Сollection;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 public class SimpleSecondArray<T> implements Iterable<T> {
-    private Object[] array;
     private int size = 0;
-    private int point = 0;
     private int modCount = 0;
+    private Object[] array;
 
-    public SimpleSecondArray() {
+    public SimpleSecondArray(){
+        this.array = new Object[10];
+        modCount++;
+    }
+    public SimpleSecondArray(int size) {
         this.array = new Object[size];
         modCount++;
     }
 
-    public void add(T model) {
-        Objects.checkIndex(size, this.array.length);
+    public T grow(){
+        if(size == array.length) {
+            this.array = Arrays.copyOf(array, array.length*2);
+        }
+        return (T) array;
+    }
+
+    public void add(T model){
+        grow();
         array[size++] = model;
         modCount++;
     }
 
-    public void set(int index, T model) {
-        Objects.checkIndex(index, size);
-        this.array[index] = model;
-        modCount++;
-    }
-
-    public void remove(int index) {
-        Objects.checkIndex(index, size);
-        array[index] = null;
-        System.arraycopy(array, index + 1, array, index, size - index);
-        array[size - 1] = null;
-        size--;
-        modCount++;
-    }
-
-    public T get(int index) {
+    public T get(int index){
         Objects.checkIndex(index, size);
         return (T) array[index];
     }
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator() {
+        Iterator iterator = new Iterator() {
+            private int point = 0;
+            final int expectedModCount = modCount;
             @Override
             public boolean hasNext() {
+                if(point == size){
+                    throw new NoSuchElementException();
+                }
+                if(expectedModCount != modCount){
+                    throw  new ConcurrentModificationException();
+                }
                 return point < size;
             }
-
             @Override
             public Object next() {
-                if (!hasNext()) {
+                if(!hasNext()){
                     throw new NoSuchElementException();
                 }
                 return array[point++];
             }
         };
+        return iterator;
     }
 }
+
+
+
 
