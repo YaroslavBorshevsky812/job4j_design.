@@ -47,12 +47,5 @@ public class SimpleArray<T> implements Iterable<T>{
             }
         };
     }
-
-    public static void main(String[] args) {
-        SimpleArray<String> data = new SimpleArray<String>(2);
-        System.out.println(data.size);
-        data.add(new String("k"));
-        System.out.println(data.size);
-    }
 }
 
