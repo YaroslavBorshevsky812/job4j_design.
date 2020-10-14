@@ -17,28 +17,27 @@ public class LinkList<E> implements Iterable<E>{
             this.prev = prev;
         }
     }
-    transient int size = 0;
-    transient Node<E> first;
-    transient Node<E> last;
+    private int size = 0;
+    private Node<E> first;
+    private Node<E> last;
     private int modCount = 0;
 
     public LinkList(){
+        this.first = new Node<>(null, null, null);
     };
-    public LinkList(Collection<? extends E> col){
-    }
 
     public E get (int index){
         if(index < 0 || index >= size){
             throw new NoSuchElementException();
         }
-        Node result = first;
+        Node<E> result = first;
         for (int i = 0; i < index; i++) {
                 result = first.next;
         }
         return (E) result.item;
     }
 
-    public void linkLast(E e) {
+    public void addLast(E e) {
         final Node<E> l = last;
         final Node<E> newNode = new Node<>(l, e, null);
         last = newNode;
@@ -49,7 +48,7 @@ public class LinkList<E> implements Iterable<E>{
         size++;
         modCount++;
     }
-    public void linkBefore(E e, Node<E> succ) {
+    private void linkBefore(E e, Node<E> succ) {
         final Node<E> pred = succ.prev;
         final Node<E> newNode = new Node<>(pred, e, succ);
         succ.prev = newNode;
@@ -63,36 +62,46 @@ public class LinkList<E> implements Iterable<E>{
     public void add(int index, E element){
         Objects.checkIndex(index, size);
         if(index == size){
-            linkLast(element);
+            addLast(element);
         } else {
            linkBefore(element, new Node<E>(first.prev, get(index), first.next));
         }
     }
     @Override
     public Iterator<E> iterator() {
-        Iterator iterator = new Iterator() {
-            private int point = 0;
+                return new Iterator() {
+                    Node<E> result = first;
+                    Node<E> buf = null;
+                    Node<E> buf1 = null;
             final int expectedModCount = modCount;
             @Override
             public boolean hasNext() {
-                if(point == size){
-                    throw new NoSuchElementException();
-                }
                 if(expectedModCount != modCount){
                     throw  new ConcurrentModificationException();
                 }
-                return point < size;
+                return result != null;
             }
             @Override
             public Object next() {
                 if(!hasNext()){
                     throw new NoSuchElementException();
                 }
-                Node<E> result = first;
-
-                return first.next;
+                Object value = result.item;
+                result = result.next;
+                return value;
             }
         };
-        return iterator;
+    }
+
+    public static void main(String[] args) {
+        LinkList<String> data = new LinkList<>();
+        data.addLast(new String("Y"));
+        data.addLast(new String("A"));
+        data.addLast(new String("R"));
+        Iterator<String> it = data.iterator();
+        while(it.hasNext()){
+            System.out.println(it.next());
+        }
     }
 }
+
