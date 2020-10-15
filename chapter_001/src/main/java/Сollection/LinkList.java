@@ -16,9 +16,6 @@ public class LinkList<E> implements Iterable<E>{
             this.next = next;
             this.prev = prev;
         }
-        Node(E element){
-            this.item = element;
-        }
     }
     private int size = 0;
     private Node<E> first;

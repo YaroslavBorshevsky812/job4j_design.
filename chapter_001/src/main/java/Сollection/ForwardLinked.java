@@ -1,5 +1,7 @@
 package Сollection;
 
+import com.sun.security.jgss.GSSUtil;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -9,7 +11,7 @@ public class ForwardLinked<T> implements Iterable<T> {
     private Node<T> last;
 
     public void add(T value) {
-        Node<T> node = new Node<T>(value, null);
+        Node<T> node = new Node<T>( value, null);
         if (head == null) {
             head = node;
             return;
@@ -18,6 +20,7 @@ public class ForwardLinked<T> implements Iterable<T> {
         while (tail.next != null) {
             tail = tail.next;
         }
+        last = node;
         tail.next = node;
     }
     public T deleteFirst(){
@@ -30,6 +33,15 @@ public class ForwardLinked<T> implements Iterable<T> {
         return temp.value;
     }
 
+    public T deleteLast() {
+        Node buf = head;
+        Node dope;
+        while (buf.next.next != null)
+            buf = buf.next;
+        dope = buf.next;
+        buf.next = null;
+        return (T) dope.value;
+    }
 
     @Override
     public Iterator<T> iterator() {
@@ -59,18 +71,6 @@ public class ForwardLinked<T> implements Iterable<T> {
         public Node(T value, Node<T> next) {
             this.value = value;
             this.next = next;
-        }
-    }
-
-    public static void main(String[] args) {
-        ForwardLinked<String> data = new ForwardLinked<>();
-        data.add(new String("A"));
-        data.add(new String("B"));
-        data.add(new String("C"));
-        data.deleteFirst();
-        Iterator<String> it = data.iterator();
-        while(it.hasNext()){
-            System.out.print(it.next());
         }
     }
 }
