@@ -16,6 +16,9 @@ public class LinkList<E> implements Iterable<E>{
             this.next = next;
             this.prev = prev;
         }
+        Node(E element){
+            this.item = element;
+        }
     }
     private int size = 0;
     private Node<E> first;
@@ -47,25 +50,6 @@ public class LinkList<E> implements Iterable<E>{
             l.next = newNode;
         size++;
         modCount++;
-    }
-    private void linkBefore(E e, Node<E> succ) {
-        final Node<E> pred = succ.prev;
-        final Node<E> newNode = new Node<>(pred, e, succ);
-        succ.prev = newNode;
-        if (pred == null)
-            first = newNode;
-        else
-            pred.next = newNode;
-        size++;
-        modCount++;
-    }
-    public void add(int index, E element){
-        Objects.checkIndex(index, size);
-        if(index == size){
-            addLast(element);
-        } else {
-           linkBefore(element, new Node<E>(first.prev, get(index), first.next));
-        }
     }
     @Override
     public Iterator<E> iterator() {
