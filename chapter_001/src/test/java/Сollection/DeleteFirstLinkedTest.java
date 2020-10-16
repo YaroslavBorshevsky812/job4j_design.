@@ -29,7 +29,8 @@ public class DeleteFirstLinkedTest {
         ForwardLinked<Integer> linked = new ForwardLinked<>();
         linked.add(1);
         linked.add(2);
-        linked.deleteFirst();
+        Integer ints = linked.deleteFirst();
+        assertThat(ints, is(1));
         Iterator<Integer> it = linked.iterator();
         assertThat(it.next(), is(2));
     }

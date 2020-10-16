@@ -11,14 +11,13 @@ public class SimpleStack<T> {
     }
 
     public void push(T value) {
-            linked.add(value);
+        linked.add(value);
     }
 
     public static void main(String[] args) {
         SimpleStack<String> data = new SimpleStack<>();
         data.push(new String("Y"));
         data.push(new String("A"));
-        data.push(new String("R"));
         System.out.println(data.pop());
     }
 
