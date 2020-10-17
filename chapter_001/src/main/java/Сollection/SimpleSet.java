@@ -3,6 +3,7 @@ package Сollection;
 import Generics.SimpleArray;
 import jdk.swing.interop.SwingInterOpUtils;
 
+import java.time.Year;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -12,29 +13,42 @@ public class SimpleSet<T> {
     private SimpleArray<T> array;
     private int size = 0;
 
-    public SimpleSet(){
-        this.array = new SimpleArray<T>(this.size);
+    public int getSize() {
+        return size;
     }
 
-    public boolean add(T element){
+    public SimpleSet() {
+        this.array = new SimpleArray<T>(10);
+    }
+
+    public boolean add(T element) {
         boolean canAdd = true;
         Iterator<T> it = array.iterator();
-            while(it.hasNext()){
-                if(it.next().equals(element)){
-                    canAdd = false;
-                }
+        while(canAdd){
+            if(it.next().equals(element)){
+                canAdd = false;
             }
-        if(canAdd){
+        }
+        if (canAdd) {
             size++;
             array.add(element);
         }
         return canAdd;
     }
 
+
     public static void main(String[] args) {
-        HashSet<String> data = new HashSet<>();
-        data.add("s");
-        data.add("t");
-        System.out.println(Arrays.asList(data));
+        SimpleSet<String> set = new SimpleSet<>();
+        Iterator<String> it = set.array.iterator();
+        set.add("T");
+        set.add("T");
+        set.add("Y");
+        set.add("Y");
+        set.add("y");
+        set.add("Y");
+        System.out.println(set.size);
+        for (int i = 0; i < set.size; i++) {
+            System.out.println(set.array.get(i));
+        }
     }
 }
