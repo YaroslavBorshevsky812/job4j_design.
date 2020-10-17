@@ -4,21 +4,20 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class SimpleStack<T> {
+    private int size = 0;
     private ForwardLinked<T> linked = new ForwardLinked<T>();
 
+    public int getSize() {
+        return size;
+    }
+
     public T pop() {
+        size--;
         return linked.deleteLast();
     }
 
     public void push(T value) {
         linked.add(value);
+        size++;
     }
-
-    public static void main(String[] args) {
-        SimpleStack<String> data = new SimpleStack<>();
-        data.push(new String("Y"));
-        data.push(new String("A"));
-        System.out.println(data.pop());
-    }
-
 }
