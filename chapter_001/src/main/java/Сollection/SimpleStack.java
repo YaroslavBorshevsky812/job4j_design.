@@ -10,7 +10,9 @@ public class SimpleStack<T> {
     public int getSize() {
         return size;
     }
-
+    public boolean isEmpty(){
+        return size == 0;
+    }
     public T pop() {
         size--;
         return linked.deleteLast();

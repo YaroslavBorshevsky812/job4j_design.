@@ -7,11 +7,11 @@ public class SimpleQueue<T> {
 
     public T pop() {
         T buf = null;
-        if(s2.getSize() != 0){
+        if(!s2.isEmpty()){
             buf = s2.pop();
             size--;
         } else {
-            if (s1.getSize() != 0) {
+            if (!s1.isEmpty()) {
                 for (int i = 0; i < size; i++) {
                     s2.push(s1.pop());
                 }
