@@ -7,7 +7,6 @@ import java.util.*;
 public class SimpleArray<T> implements Iterable<T>{
         private Object[] array;
         private int size = 0;
-        private int point = 0;
     public SimpleArray(int size) {
         this.array = new Object[size];
     }
@@ -33,6 +32,7 @@ public class SimpleArray<T> implements Iterable<T>{
     @Override
     public Iterator<T> iterator() {
         return new Iterator() {
+            private int point = 0;
             @Override
             public boolean hasNext() {
                 return point < size;

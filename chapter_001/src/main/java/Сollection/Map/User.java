@@ -1,5 +1,6 @@
 package Сollection.Map;
 
+import javax.imageio.stream.ImageInputStream;
 import java.util.Calendar;
 
 public class User {
@@ -11,5 +12,8 @@ public class User {
         this.name = name;
         this.age = age;
         this.birthday = birthday;
+    }
+
+    public static void main(String[] args) {
     }
 }
