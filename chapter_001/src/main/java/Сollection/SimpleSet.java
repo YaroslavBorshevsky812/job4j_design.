@@ -24,9 +24,10 @@ public class SimpleSet<T> {
     public boolean add(T element) {
         boolean canAdd = true;
         Iterator<T> it = array.iterator();
-        while(canAdd){
-            if(it.next().equals(element)){
+        while(it.hasNext()){
+            if(Objects.equals(it.next(), element)){
                 canAdd = false;
+                break;
             }
         }
         if (canAdd) {
