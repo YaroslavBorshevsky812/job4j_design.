@@ -43,7 +43,7 @@ public class SimpleArray<T> implements Iterable<T>{
                 if(!hasNext()){
                     throw new NoSuchElementException();
                 }
-                return array[point++];
+                return (T) array[point++];
             }
         };
     }

@@ -21,15 +21,19 @@ public class SimpleSet<T> {
         this.array = new SimpleArray<T>(10);
     }
 
-    public boolean add(T element) {
+    private boolean equalE(T element){
         boolean canAdd = true;
         Iterator<T> it = array.iterator();
-        while(it.hasNext()){
-            if(Objects.equals(it.next(), element)){
+        while(it.hasNext()) {
+            if (Objects.equals(it.next(), element)) {
                 canAdd = false;
                 break;
             }
         }
+        return canAdd;
+    }
+    public boolean add(T element) {
+        boolean canAdd = equalE(element);
         if (canAdd) {
             size++;
             array.add(element);
