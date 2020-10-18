@@ -41,4 +41,13 @@ public class SimpleQueueTest {
         SimpleQueue<Integer> queue = new SimpleQueue<>();
         queue.pop();
     }
+    @Test
+    public void When2PushPopPush(){
+        SimpleQueue<Integer> queue = new SimpleQueue<>();
+        queue.push(1);
+        queue.push(2);
+        queue.pop();
+        queue.push(3);
+        assertThat(queue.pop(), is(2));
+    }
 }

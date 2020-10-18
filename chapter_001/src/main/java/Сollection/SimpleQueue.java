@@ -6,16 +6,33 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> s2 = new SimpleStack<>();
 
     public T pop() {
-        if(s1.getSize() != 0){
-            for (int i = 0; i < size; i++) {
-                s2.push(s1.pop());
+        T buf = null;
+        if(s2.getSize() != 0){
+            buf = s2.pop();
+            size--;
+        } else {
+            if (s1.getSize() != 0) {
+                for (int i = 0; i < size; i++) {
+                    s2.push(s1.pop());
+                }
             }
+            buf = s2.pop();
+            size--;
         }
-        size--;
-        return s2.pop();
+        return buf;
     }
     public void push(T value) {
         s1.push(value);
         size++;
+    }
+
+    public static void main(String[] args) {
+        SimpleQueue<Integer> queue = new SimpleQueue<>();
+        queue.push(1);
+        queue.push(2);
+        queue.pop();
+        queue.push(3);
+        System.out.println(queue.pop());
+        System.out.println(queue.size);
     }
 }
