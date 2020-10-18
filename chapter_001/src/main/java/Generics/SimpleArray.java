@@ -8,7 +8,6 @@ public class SimpleArray<T> implements Iterable<T>{
         private Object[] array;
         private int size = 0;
         private int point = 0;
-
     public SimpleArray(int size) {
         this.array = new Object[size];
     }

@@ -40,8 +40,6 @@ public class SimpleSet<T> {
         }
         return canAdd;
     }
-
-
     public static void main(String[] args) {
         SimpleSet<String> set = new SimpleSet<>();
         Iterator<String> it = set.array.iterator();
