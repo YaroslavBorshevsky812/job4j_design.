@@ -2,12 +2,12 @@ package сollections;
 
 import java.util.*;
 
-public class LinkList<E> implements Iterable<E>{
+public class LinkList<E> implements Iterable<E> {
 
-    private static class Node<E>{
-        E item;
-        Node<E> next;
-        Node<E> prev;
+    private static class Node<E> {
+       private E item;
+       private Node<E> next;
+       private Node<E> prev;
 
         Node(Node<E> prev, E element, Node<E> next) {
             this.item = element;
@@ -20,12 +20,11 @@ public class LinkList<E> implements Iterable<E>{
     private Node<E> last;
     private int modCount = 0;
 
-    public LinkList(){
+    public LinkList() {
         this.first = new Node<>(null, null, null);
     };
-
-    public E get (int index){
-        if(index < 0 || index >= size){
+    public E get (int index) {
+        if (index < 0 || index >= size) {
             throw new NoSuchElementException();
         }
         Node<E> result = first;
@@ -39,30 +38,31 @@ public class LinkList<E> implements Iterable<E>{
         final Node<E> l = last;
         final Node<E> newNode = new Node<>(l, e, null);
         last = newNode;
-        if (l == null)
+        if (l == null) {
             first = newNode;
-        else
+        } else {
             l.next = newNode;
-        size++;
-        modCount++;
+            size++;
+            modCount++;
+        }
     }
     @Override
     public Iterator<E> iterator() {
                 return new Iterator() {
-                    Node<E> result = first;
-                    Node<E> buf = null;
-                    Node<E> buf1 = null;
+                   private Node<E> result = first;
+                   private Node<E> buf = null;
+                   private Node<E> buf1 = null;
             final int expectedModCount = modCount;
             @Override
             public boolean hasNext() {
-                if(expectedModCount != modCount){
+                if (expectedModCount != modCount) {
                     throw  new ConcurrentModificationException();
                 }
                 return result != null;
             }
             @Override
             public Object next() {
-                if(!hasNext()){
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 Object value = result.item;
@@ -78,7 +78,7 @@ public class LinkList<E> implements Iterable<E>{
         data.addLast(new String("A"));
         data.addLast(new String("R"));
         Iterator<String> it = data.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             System.out.println(it.next());
         }
     }

@@ -7,7 +7,7 @@ public class SimpleSecondArray<T> implements Iterable<T> {
     private int modCount = 0;
     private Object[] array;
 
-    public SimpleSecondArray(){
+    public SimpleSecondArray() {
         this.array = new Object[10];
         modCount++;
     }
@@ -16,20 +16,20 @@ public class SimpleSecondArray<T> implements Iterable<T> {
         modCount++;
     }
 
-    public T grow(){
-        if(size == array.length) {
+    public T grow() {
+        if (size == array.length) {
             this.array = Arrays.copyOf(array, array.length*2);
         }
         return (T) array;
     }
 
-    public void add(T model){
+    public void add(T model) {
         grow();
         array[size++] = model;
         modCount++;
     }
 
-    public T get(int index){
+    public T get(int index) {
         Objects.checkIndex(index, size);
         return (T) array[index];
     }
@@ -41,17 +41,17 @@ public class SimpleSecondArray<T> implements Iterable<T> {
             final int expectedModCount = modCount;
             @Override
             public boolean hasNext() {
-                if(point == size){
+                if (point == size) {
                     throw new NoSuchElementException();
                 }
-                if(expectedModCount != modCount){
+                if (expectedModCount != modCount) {
                     throw  new ConcurrentModificationException();
                 }
                 return point < size;
             }
             @Override
             public Object next() {
-                if(!hasNext()){
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 return array[point++];

@@ -5,8 +5,8 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> s2 = new SimpleStack<>();
 
     public T pop() {
-        if(s2.isEmpty()){
-            while(!s1.isEmpty()){
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()) {
                 s2.push(s1.pop());
             }
         }

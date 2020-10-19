@@ -3,7 +3,7 @@ package generics.app;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleStore<T extends Base> implements Store<T>{
+public class RoleStore<T extends Base> implements Store<T> {
 
     private final List<T> roles = new ArrayList<>();
 

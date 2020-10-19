@@ -5,11 +5,10 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-
 public class SimpleSetTest {
 
     @Test
-    public void onlySet(){
+    public void onlySet() {
         SimpleSet<String> set = new SimpleSet<>();
         set.add("T");
         set.add("t");

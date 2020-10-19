@@ -7,14 +7,13 @@ public class SimpleStack<T> {
     public int getSize() {
         return size;
     }
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
     public T pop() {
         size--;
         return linked.deleteLast();
     }
-
     public void push(T value) {
         linked.add(value);
         size++;

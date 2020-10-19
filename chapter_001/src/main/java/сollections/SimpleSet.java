@@ -16,10 +16,10 @@ public class SimpleSet<T> {
         this.array = new SimpleArray<T>(10);
     }
 
-    private boolean equalE(T element){
+    private boolean equalE(T element) {
         boolean canAdd = true;
         Iterator<T> it = array.iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             if (Objects.equals(it.next(), element)) {
                 canAdd = false;
                 break;

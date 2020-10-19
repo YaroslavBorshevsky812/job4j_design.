@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class LinkListTest {
 
     @Test
-    public void whenAddLastThenGet(){
+    public void whenAddLastThenGet() {
         LinkList<String> data = new LinkList<>();
         data.addLast(new String("Y"));
         String expected = "Y";

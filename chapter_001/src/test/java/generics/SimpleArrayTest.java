@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
-
 public class SimpleArrayTest {
 
     @Test
@@ -20,15 +19,15 @@ public class SimpleArrayTest {
         assertThat(rsl, is("first"));
     }
     @Test
-    public void whenSetThenGet(){
+    public void whenSetThenGet() {
         SimpleArray<Object> array = new SimpleArray<Object>(2);
         array.add("First");
-        array.set(0,"Second");
+        array.set(0, "Second");
         Object rsl = array.get(0);
         assertThat(rsl, is("Second"));
     }
     @Test(expected = IndexOutOfBoundsException.class)
-    public void whenRemoveThenTakeLeft(){
+    public void whenRemoveThenTakeLeft() {
         SimpleArray<Object> array = new SimpleArray<Object>(3);
         array.add("First");
         array.add("Second");
@@ -48,7 +47,7 @@ public class SimpleArrayTest {
         it.next();
     }
     @Test
-    public void whenThreeElement(){
+    public void whenThreeElement() {
         SimpleArray<Object> array = new SimpleArray<Object>(3);
         Iterator<Object> it = array.iterator();
         array.add("first");
@@ -61,6 +60,5 @@ public class SimpleArrayTest {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is("third"));
         assertThat(it.hasNext(), is(false));
-
     }
 }
