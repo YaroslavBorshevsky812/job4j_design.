@@ -14,7 +14,8 @@ public class LogFilter {
             in.lines().forEach(lines::add);
             for (String line : lines) {
                 line1 = Arrays.asList(line.split(" "));
-                if (line1.get(line1.size() - 2).equals("404") && !(line1.get(line1.size() - 1).equals("-"))) {
+                if (line1.get(line1.size() - 2).equals("404")
+                        && !(line1.get(line1.size() - 1).equals("-"))) {
                     System.out.println(line1 + "  Длина" + line1.size());
                 }
             }
