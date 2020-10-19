@@ -1,11 +1,6 @@
 package Сollection;
 
 import Generics.SimpleArray;
-import jdk.swing.interop.SwingInterOpUtils;
-
-import java.time.Year;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
 
