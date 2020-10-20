@@ -26,4 +26,9 @@ public class User {
             System.out.println(key + " = " + value);
         }
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "name='" + name + '\'' + ", age=" + age + ", birthday=" + birthday + '}';
+    }
 }
