@@ -37,19 +37,4 @@ public class SimpleSet<T> {
         }
         return canAdd;
     }
-
-    public static void main(String[] args) {
-        SimpleSet<String> set = new SimpleSet<>();
-        Iterator<String> it = set.array.iterator();
-        set.add("T");
-        set.add("T");
-        set.add("Y");
-        set.add("Y");
-        set.add("y");
-        set.add("Y");
-        System.out.println(set.size);
-        for (int i = 0; i < set.size; i++) {
-            System.out.println(set.array.get(i));
-        }
-    }
 }
