@@ -43,7 +43,9 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return age == user.age && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
+        return age == user.age
+                && Objects.equals(name, user.name)
+                && Objects.equals(birthday, user.birthday);
     }
 
     @Override
