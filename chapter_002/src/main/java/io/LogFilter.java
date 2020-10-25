@@ -20,21 +20,21 @@ public class LogFilter {
         }
         return line1;
     }
-//    public static void save(List<String> log, String file) {
-//        try (PrintWriter out = new PrintWriter(
-//                new BufferedOutputStream(
-//                        new FileOutputStream("logResult.txt")
-//                ))) {
-//            out.write(filter("log.txt" + "\n").toString());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static void save(List<String> log, String file) {
+        try (PrintWriter out = new PrintWriter(
+                new BufferedOutputStream(
+                        new FileOutputStream(file)
+                ))) {
+            out.write(String.valueOf(log));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         List<String> log = filter("log.txt");
         System.out.println(log);
-//        save(log, "logResult.txt");
+        save(log, "logResult.txt");
 
     }
 }
