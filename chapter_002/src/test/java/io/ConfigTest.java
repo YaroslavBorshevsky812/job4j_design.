@@ -8,7 +8,7 @@ public class ConfigTest {
 
     @Test
     public void whenPairWithoutComment() {
-        String path = "./chapter_002/src/main/resources/app.properties";
+        String path = "./src/main/resources/app.properties";
         Config config = new Config(path);
         config.load();
         assertThat(

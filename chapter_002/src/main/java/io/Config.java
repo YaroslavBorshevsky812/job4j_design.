@@ -18,11 +18,13 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             String s = read.readLine();
-            if (!(s.isEmpty() || s.contains("//"))) {
+            if (!(s.isEmpty() || s.contains("\\/\\/"))) {
                 while ((s = read.readLine()) != null) {
-                        String[] s1 = s.split("=");
+                    String[] s1 = s.split("=");
+                    if (s.length() >= 2) {
                         values.put(s1[0], s1[1]);
                     }
+                }
                 }
         } catch (Exception e) {
             e.printStackTrace();
