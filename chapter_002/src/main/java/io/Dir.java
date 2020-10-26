@@ -14,7 +14,8 @@ public class Dir {
                     IllegalArgumentException(String
                             .format("Not directory %s", file.getAbsoluteFile()));
         }
-        System.out.println(String
-                .format(file.getName() + " - " + "size : %s", file.getTotalSpace()));
+        for (File f:file.listFiles()) {
+            System.out.println(f.getName() + "  - " + f.length());
+        }
     }
 }
