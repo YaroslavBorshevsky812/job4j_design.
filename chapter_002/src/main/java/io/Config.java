@@ -17,9 +17,10 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            String s = read.readLine();
-            if (!(s.isEmpty() || s.contains("\\/\\/"))) {
-                while ((s = read.readLine()) != null) {
+                while ((read.readLine()) != null) {
+                    read.readLine();
+                    String s = read.readLine();
+                    if (!(s.isEmpty() || s.startsWith("#"))) {
                     String[] s1 = s.split("=");
                     if (s.length() >= 2) {
                         values.put(s1[0], s1[1]);
