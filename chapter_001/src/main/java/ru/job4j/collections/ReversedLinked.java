@@ -20,16 +20,16 @@ public class ReversedLinked<T> implements Iterable<T> {
     }
 
     public void revert() {
-        Node<T> temp = head;
+        Node<T> current = head;
         Node<T> previous = null;
-        Node<T> current = null;
-        while (temp != null) {
-            current = temp;
-            temp = temp.next;
+        Node<T> next = null;
+        while (current != null) {
+            next = current.next;
             current.next = previous;
             previous = current;
-            head = current;
+            current = next;
         }
+        head = previous;
     }
 
     @Override
