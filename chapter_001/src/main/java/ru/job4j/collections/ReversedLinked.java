@@ -20,13 +20,22 @@ public class ReversedLinked<T> implements Iterable<T> {
     }
 
     public void revert() {
-        //TODO impl reverts of linked list.
+        Node<T> temp = head;
+        Node<T> previous = null;
+        Node<T> current = null;
+        while (temp != null) {
+            current = temp;
+            temp = temp.next;
+            current.next = previous;
+            previous = current;
+            head = current;
+        }
     }
 
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            Node<T> node = head;
+            private Node<T> node = head;
 
             @Override
             public boolean hasNext() {
@@ -46,8 +55,8 @@ public class ReversedLinked<T> implements Iterable<T> {
     }
 
     private static class Node<T> {
-        T value;
-        Node<T> next;
+       private T value;
+       private Node<T> next;
 
         public Node(T value, Node<T> next) {
             this.value = value;
