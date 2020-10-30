@@ -19,13 +19,9 @@ import java.util.function.Predicate;
         public static <T> void addAfter(List<T> list, int index, T value) {
             Objects.checkIndex(index, list.size());
             ListIterator<T> i = list.listIterator();
-            while (i.nextIndex() != index + 2) {
-                if (i.nextIndex() >= list.size()) {
-                    list.add(value);
-                    break;
-                }
-                if (i.nextIndex() == index + 2) {
-                    list.add(i.previousIndex(), value);
+            while (i.hasNext()) {
+                if (i.previousIndex() == index) {
+                    list.add(i.nextIndex(), value);
                     break;
                 }
                 i.next();
@@ -61,6 +57,14 @@ import java.util.function.Predicate;
                 }
             }
             return list;
+        }
+
+        public static void main(String[] args) {
+            List<String> list = new ArrayList<>();
+            list.add("One");
+            list.add("Two");
+            ListUtils.addAfter(list, 1, "value");
+            System.out.println(list);
         }
     }
 

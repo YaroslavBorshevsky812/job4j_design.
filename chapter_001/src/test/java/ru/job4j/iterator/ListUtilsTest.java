@@ -28,8 +28,8 @@ public class ListUtilsTest {
         @Test
         public void whenAddAfter() {
             List<Integer> input = new ArrayList<>(Arrays.asList(1, 2));
-            ListUtils.addAfter(input, 1, 3);
-            assertThat(Arrays.asList(1, 2, 3), Is.is(input));
+            ListUtils.addAfter(input, 0, 3);
+            assertThat(Arrays.asList(1, 3, 2), Is.is(input));
         }
 
         @Test
