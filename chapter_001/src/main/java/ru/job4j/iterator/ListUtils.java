@@ -24,8 +24,8 @@ import java.util.function.Predicate;
                     list.add(value);
                     break;
                 }
-                if (i.nextIndex() == index + 1) {
-                    list.add(i.nextIndex(), value);
+                if (i.nextIndex() == index + 2) {
+                    list.add(i.previousIndex(), value);
                     break;
                 }
                 i.next();
