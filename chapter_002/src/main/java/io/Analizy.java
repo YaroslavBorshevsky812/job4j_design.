@@ -32,7 +32,7 @@ public class Analizy {
         }
 
         try (PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
-            out.println(lines);
+            out.println((lines));
         } catch (Exception e) {
             e.printStackTrace();
         }
