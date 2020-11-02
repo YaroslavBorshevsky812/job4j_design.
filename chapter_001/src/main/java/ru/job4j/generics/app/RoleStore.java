@@ -3,28 +3,27 @@ package ru.job4j.generics.app;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleStore<T extends Base> implements Store<T> {
+public class RoleStore<Role extends Base> implements Store<Role> {
 
-    private final List<T> roles = new ArrayList<>();
+    private final Store<Role> store = new MemStore<>();
 
     @Override
-    public void add(T model) {
-        roles.add(model);
+    public void add(Role model) {
+        this.store.add(model);
     }
 
     @Override
-    public boolean replace(String id, T model) {
-        return false;
+    public boolean replace(String id, Role model) {
+        return this.store.replace(id, model);
     }
 
     @Override
     public boolean delete(String id) {
-        return false;
+        return this.store.delete(id);
     }
 
     @Override
-    public T findById(String id) {
-
-        return null;
+    public Role findById(String id) {
+        return this.store.findById(id);
     }
 }

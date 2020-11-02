@@ -2,28 +2,58 @@ package ru.job4j.generics.app;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 public final class MemStore<T extends Base> implements Store<T> {
 
     private final List<T> mem = new ArrayList<>();
 
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int i = 0; i < this.mem.size(); i++) {
+            if (this.mem.get(i).getId().equals(id)) {
+                rsl = i;
+                break;
+            }
+        }
+        return rsl;
+    }
+
     @Override
     public void add(T model) {
-
+        this.mem.add(model);
     }
 
     @Override
     public boolean replace(String id, T model) {
-        return false;
+        int index = this.indexOf(id);
+        boolean rsl = false;
+        if (index != -1) {
+            this.mem.set(index, model);
+            rsl = true;
+        }
+        return rsl;
     }
 
     @Override
     public boolean delete(String id) {
-        return false;
+        int index = this.indexOf(id);
+        boolean rsl = false;
+        if (index != -1) {
+            this.mem.remove(index);
+            rsl = true;
+        }
+        return rsl;
     }
 
     @Override
     public T findById(String id) {
-        return null;
+        T rsl = null;
+        int index = this.indexOf(id);
+        if (index != -1) {
+            rsl = this.mem.get(index);
+        }
+        return rsl;
     }
 }
