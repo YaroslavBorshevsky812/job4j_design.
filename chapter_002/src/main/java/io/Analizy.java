@@ -11,7 +11,8 @@ public class Analizy {
     public static void unavailable(String source, String target) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(source));
-            PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(target)));
+            PrintWriter writer = new PrintWriter(
+                    new BufferedOutputStream(new FileOutputStream(target)));
             String serverDown = null;
             while (reader.ready()) {
                 String s = reader.readLine();
