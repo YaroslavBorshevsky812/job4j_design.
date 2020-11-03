@@ -127,6 +127,11 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Node<K, V>> {
         private final K key;
         private V value;
 
+        @Override
+        public int hashCode() {
+            return Objects.hash(key, value);
+        }
+
         public Node(K key, V value) {
             this.key = key;
             this.value = value;
@@ -141,7 +146,7 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Node<K, V>> {
             return key + " = " + value;
         }
 
-        @Override
+       @Override
         public boolean equals(Object o) {
             if (this == o) {
                 return true;
@@ -153,5 +158,6 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Node<K, V>> {
             return Objects.equals(key, node.key)
                     && Objects.equals(value, node.value);
         }
+
     }
 }
