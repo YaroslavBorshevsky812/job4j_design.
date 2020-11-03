@@ -25,7 +25,7 @@ class Tree<E> implements SimpleTree<E> {
 
     @Override
     public Optional<Node<E>> findBy(E value) {
-        return checkWithPredicate(n -> n.value.equals(value));
+        return checkWithPredicate(n -> n.getValue().equals(value));
     }
 
     private Optional<Node<E>> checkWithPredicate(Predicate<Node<E>> cond) {
@@ -38,7 +38,7 @@ class Tree<E> implements SimpleTree<E> {
                 rsl = Optional.of(el);
                 break;
             }
-            data.addAll(el.children);
+            data.addAll(el.getChildren());
         }
         return rsl;
     }
