@@ -35,6 +35,7 @@ public class SearchFiles implements FileVisitor<Path> {
             this.listOfPath.add(file);
         }
         return CONTINUE;
+
     }
 
     @Override
