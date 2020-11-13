@@ -1,0 +1,15 @@
+create database cars;
+create table cars
+(
+    id           serial primary key,
+    name         varchar(255),
+    country      text,
+    price        money,
+    availability boolean
+);
+SET lc_monetary TO "en_US.UTF-8";
+insert into cars (name, country, price, availability) values ('Bmw', 'Germany', 100, true);
+insert into cars (name, country, price, availability) values ('Mercedes', 'Germany', 120, false);
+update cars set name = 'BMW';
+delete from cars;
+select * from cars;
