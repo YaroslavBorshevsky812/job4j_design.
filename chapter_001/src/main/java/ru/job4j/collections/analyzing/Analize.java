@@ -15,7 +15,7 @@ public class Analize {
         }
 
         for (User user : current) {
-            if (!(map.containsValue(user)) && map.containsKey(user.getId()) ) {
+            if (!(map.containsValue(user)) && map.containsKey(user.getId())) {
                 result.setDeleted(result.getDeleted() + 1);
             }
             if (map.containsValue(user) && !(map.get(user.getId()).equals(user.getName()))) {
