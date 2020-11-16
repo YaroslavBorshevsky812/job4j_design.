@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        if (args.length == 0) {
+        if (args.length != 2) {
             throw new IllegalArgumentException(
                     "Используйте 2 параметра - начальную папку и расширение, которое надо искать");
         }
