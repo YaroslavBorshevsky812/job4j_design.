@@ -4,17 +4,44 @@ import java.util.*;
 
 public class Exam {
 
-    public void merger() {
-        Map<String, Set<String>> map = new HashMap<>();
-        Set<String> setMail = Set.of("Speransky812@mail.ru");
-        Set<String> setMail1 = Set.of("lildog97@mail.ru", "mark23@");
-        Set<String> setMail2 = Set.of("Speransky812@mail.ru", "1mm24");
-        map.put("User1", setMail);
-        map.put("User2", setMail1);
-        map.put("User3", setMail2);
+    static public Map<String, Set<String>>  merger(List<User> userList) {
+        Map<String, Set<String>> userMap = new HashMap<>();
 
-           }
+        for (User user : userList) {
+            Iterator<String> iterator = user.getMailList().iterator();
+            Set<String> stringSet = new HashSet<>();
+            stringSet.addAll(user.getMailList());
 
+            if (!(userMap.isEmpty())) {
+                for (Set<String> set : userMap.values()) {
+                    if (set.contains(iterator.next())) {
+                        set.addAll(user.getMailList());
+                    }
+                }
+            } else {
+                    userMap.put(user.getName(), stringSet);
+            }
+        }
+
+        return userMap;
+    }
+
+    public static void main(String[] args) {
+        List<String> mailList = List.of("one", "two");
+        User user = new User("Вася", mailList);
+
+        List<String> mailList1 = List.of("three", "fourth");
+        User user1 = new User("Петя", mailList1);
+
+        List<String> mailList2 = List.of("one", "five");
+        User user2 = new User("Коля", mailList2);
+
+        List<User> userList = new ArrayList<>();
+        userList.add(user);
+        userList.add(user1);
+        userList.add(user2);
+        System.out.println(Exam.merger(userList));
+    }
 }
 
 
