@@ -1,4 +1,4 @@
-package ru.job4j;
+package kiss;
 
 import java.util.*;
 
