@@ -9,8 +9,9 @@ public class MaxMin {
 
         while (i.hasNext()) {
             T next = i.next();
-            if (comparator.compare(next, candidate) > 0)
+            if (comparator.compare(next, candidate) > 0) {
                 candidate = next;
+            }
         }
         return candidate;
     }
@@ -21,8 +22,9 @@ public class MaxMin {
 
         while (i.hasNext()) {
             T next = i.next();
-            if (comparator.compare(next, candidate) < 0)
+            if (comparator.compare(next, candidate) < 0) {
                 candidate = next;
+            }
         }
         return candidate;
     }
@@ -35,7 +37,7 @@ public class MaxMin {
                 return o1.compareTo(o2);
             }
         };
-        List<Integer> list = List.of(5,2,11,0);
+        List<Integer> list = List.of(5, 2, 11, 0);
         System.out.println(MaxMin.min(list, c));
     }
 }

@@ -1,9 +1,7 @@
 package io;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-
 public class ArgZip {
     private Map<String, String> map = new HashMap<>();
 
@@ -21,16 +19,17 @@ public class ArgZip {
     public String directory() {
         String[] str = args[3].split("=");
         if (str[1].isEmpty()) {
-            throw new IllegalArgumentException("Отсутствует путь к исходной папке");
+            throw new IllegalArgumentException("Отсутствует "
+                    + "путь к исходной папке");
         }
         return str[1];
     }
 
-
     public String exclude() {
         String[] str = args[4].split("=");
         if (str[1].isEmpty()) {
-            throw new IllegalArgumentException("Отсутствует параметр Исключение файлов по расширению");
+            throw new IllegalArgumentException("Отсутствует "
+                    + "параметр Исключение файлов по расширению");
         }
         return str[1];
     }
@@ -38,7 +37,8 @@ public class ArgZip {
     public String output() {
         String[] str = args[5].split("=");
         if (str[1].isEmpty()) {
-            throw new IllegalArgumentException("Имя выходного файла не задано");
+            throw new IllegalArgumentException("Имя "
+                    + "выходного файла не задано");
         }
         return str[1];
     }
@@ -52,4 +52,3 @@ public class ArgZip {
         return map.get(key);
     }
 }
-
